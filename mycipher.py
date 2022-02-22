@@ -19,7 +19,21 @@ class CeaserCipher(unittest.TestCase):
                     if temp>ord('Z'):
                         temp=temp-26
                     output+=chr(temp)
-            self.assertEqual(output,"cdef") 
+            self.assertEqual(output,"cdef")
+        if(self.operation=="decrypt"):
+            output=""
+            for i in range(len(self.word)):
+                if ord(self.word[i])>=ord('a') and ord(self.word[i])<=ord('z'):
+                    temp=ord(self.word[i])+int(self.cipher)
+                    if temp<ord('a'):
+                        temp=temp+26
+                    output+=chr(temp)
+                if ord(self.word[i])>=ord('A') and ord(self.word[i])<=ord('Z'):
+                    temp=ord(self.word[i])+int(self.cipher)
+                    if temp<ord('Z'):
+                        temp=temp+26
+                    output+=chr(temp)
+            self.assertEqual(output,"abcd") 
                   
 
 unittest.TextTestRunner().run(CeaserCipher())
